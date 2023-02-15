@@ -9,10 +9,14 @@ class UserModel {
         return await MYSQL_DB.getrow(`select * from user where id = ?`, [id]);
     }
 
+    async getUserByEmailPass(email: string, password: string): Promise<User> {
+        return await MYSQL_DB.getrow(`select * from user where email = ? and password = ?`, [email, password]);
+    }
+
     async createUser(user: User): Promise<number> {
-        let values = [user.name, user.email, user.phone];
+        let values = [user.name, user.email, user.phone, user.password];
         const userId =  await MYSQL_DB.insert(
-            `insert into user(name, email, phone) values(?,?,?)`, 
+            `insert into user(name, email, phone, password) values(?,?,?,?)`, 
             values
         );
 

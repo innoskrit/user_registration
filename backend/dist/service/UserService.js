@@ -19,6 +19,21 @@ class UserService {
             return yield this.userModel.getUsers();
         });
     }
+    loginUser(loginRequest) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let user = yield this.userModel.getUserByEmailPass(loginRequest.email, loginRequest.password);
+            if (user) {
+                return {
+                    msg: "Success"
+                };
+            }
+            else {
+                return {
+                    msg: "Failed"
+                };
+            }
+        });
+    }
     createUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
             let userId = yield this.userModel.createUser(user);

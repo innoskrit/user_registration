@@ -11,6 +11,10 @@ class UserController {
         ctx.body = "Abhishek Sharma";
     }
 
+    async loginUser(loginRequest: LoginRequest) {
+        return await this.userService.loginUser(loginRequest);
+    }
+
     async getUsers(ctx): Promise<Array<User>> {
         return await this.userService.getUsers();
     }

@@ -21,6 +21,11 @@ class UserController {
             ctx.body = "Abhishek Sharma";
         });
     }
+    loginUser(loginRequest) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userService.loginUser(loginRequest);
+        });
+    }
     getUsers(ctx) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.userService.getUsers();

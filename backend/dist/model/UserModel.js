@@ -21,10 +21,15 @@ class UserModel {
             return yield databases_1.default.getrow(`select * from user where id = ?`, [id]);
         });
     }
+    getUserByEmailPass(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield databases_1.default.getrow(`select * from user where email = ? and password = ?`, [email, password]);
+        });
+    }
     createUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            let values = [user.name, user.email, user.phone];
-            const userId = yield databases_1.default.insert(`insert into user(name, email, phone) values(?,?,?)`, values);
+            let values = [user.name, user.email, user.phone, user.password];
+            const userId = yield databases_1.default.insert(`insert into user(name, email, phone, password) values(?,?,?,?)`, values);
             return userId;
         });
     }

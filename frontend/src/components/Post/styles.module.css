@@ -1,0 +1,17 @@
+.container{
+}
+
+.post_create{
+}
+
+.post_input{
+    outline: none;
+}
+
+.post_list{
+    width: 100%;
+}
+
+.delete{
+    cursor: pointer;
+}

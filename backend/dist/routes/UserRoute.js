@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Router = require("koa-router");
 const UserController_1 = require("../controller/UserController");
 const router = new Router();
-router.post('/', (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("create user started");
+router.post('/signup', (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("create user started", ctx.request.body);
     const userController = new UserController_1.default();
     let user = yield userController.createUser(ctx.request.body);
     ctx.body = user;
@@ -25,6 +25,24 @@ router.get('/', (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
         let users = yield userController.getUsers(ctx);
         console.log('here users ' + JSON.stringify(users));
         ctx.body = users;
+    }
+    catch (err) {
+        console.log("Error in getusers", err);
+        ctx.status = err.statusCode || err.status || 500;
+        ctx.body = {
+            code: ctx.status,
+            msg: 'some error occured!'
+        };
+    }
+}));
+router.post('/login', (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const userController = new UserController_1.default();
+    // await userController.getUser(ctx);
+    try {
+        console.log(ctx.request.body, "iiiiiiiiiiiiiii");
+        let response = yield userController.loginUser(ctx.request.body);
+        console.log('here users ' + JSON.stringify(response));
+        ctx.body = response;
     }
     catch (err) {
         console.log("Error in getusers", err);
