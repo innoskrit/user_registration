@@ -1,3 +1,0 @@
-interface HelloWorld {
-    name: string
-}
