@@ -1,0 +1,43 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 3300:3300
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.11
+    depends_on:
+      - mysql
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.12
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      my-network:
+        ipv4_address: 172.18.0.10
+volumes:
+  mysql-data:
+
+networks:
+  my-network:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
