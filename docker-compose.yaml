@@ -9,8 +9,8 @@ services:
     networks:
       my-network:
         ipv4_address: 172.18.0.11
-    depends_on:
-      - mysql
+    # depends_on:
+    #   - mysql
 
   frontend:
     build:
@@ -22,19 +22,19 @@ services:
       my-network:
         ipv4_address: 172.18.0.12
 
-  mysql:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=my-secret-pw
-    ports:
-      - 3306:3306
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      my-network:
-        ipv4_address: 172.18.0.10
-volumes:
-  mysql-data:
+#   mysql:
+#     image: mysql:latest
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=my-secret-pw
+#     ports:
+#       - 3306:3306
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#     networks:
+#       my-network:
+#         ipv4_address: 172.18.0.10
+# volumes:
+#   mysql-data:
 
 networks:
   my-network:
