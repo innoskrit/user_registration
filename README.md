@@ -27,4 +27,4 @@ cd frontend
 npm install
 npm start
 ```
-React will start on port 3000
+React will start on port `3000`
